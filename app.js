@@ -1,11 +1,11 @@
-const containerCart = document.getElementById("containerCart")
-const Search = document.getElementById("Search")
+const containerCard  = document.getElementById("containerCard")
+const search = document.getElementById("search")
 
 window.addEventListener('DOMContentLoaded', () => {
-    renderGif()
+    loadGif()
 });
 
-function renderGif(){
+function loadGif(){
     
 
     fetch('https://tenor.googleapis.com/v2/search?q=festival&key=AIzaSyAbm8PL6v82q19mK2xWRrMArrqkvoZB5lk')
@@ -15,28 +15,28 @@ function renderGif(){
     
         data.results.forEach(element => {
             
-            createCart(element)
+            createCard(element)
             
         });       
     })  
 }
 
-Search.addEventListener('keyup', ()=>{
+search.addEventListener('keyup', ()=>{
     
-    if(Search.value==""){
+    if(search.value==""){
         
-        createCart(element)
+        createCard(element)
 
     }else{
 
-        containerCart.innerHTML= '';
-        fetch('https://tenor.googleapis.com/v2/search?q='+Search.value+'&key=AIzaSyAbm8PL6v82q19mK2xWRrMArrqkvoZB5lk')
+        containerCard.innerHTML= '';
+        fetch('https://tenor.googleapis.com/v2/search?q='+search.value+'&key=AIzaSyAbm8PL6v82q19mK2xWRrMArrqkvoZB5lk')
         .then(response =>response.json())
         .then(data => { 
             
             data.results.forEach(element => {
                 
-                createCart(element)
+                createCard(element)
                 
             }); 
             
@@ -46,11 +46,11 @@ Search.addEventListener('keyup', ()=>{
 
 
 
-function createCart(element){
+function createCard(element){
 
     const gif = document.createElement('img')
     gif.className +="gif"
     gif.src = element.media_formats.gif.url
 
-    containerCart.appendChild(gif);
+    containerCard.appendChild(gif);
 }
